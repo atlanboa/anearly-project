@@ -60,8 +60,10 @@ const VoteInfo = props => {
       setValid(response.data.map(asdf => { return true}))
     }).catch(error => {
       if(error.response.status===500){
-        alert('이미 참여한 설문입니다!.')
-        window.location.href='/'
+        if (error.response.statusText) {
+          alert("이미 참여한 설문입니다.")
+          window.location.href='/'
+        }
       }
     })
   },[])

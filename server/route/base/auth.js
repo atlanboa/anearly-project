@@ -29,7 +29,7 @@ app.get("/users/:user_id", async (req, res) => {
     return;
   }
 
-  if (data.length == 0) {
+  if (data.length === 0) {
     res.status(403).send({ msg: "정보가 없습니다." });
     return;
   }

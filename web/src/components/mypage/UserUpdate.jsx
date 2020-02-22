@@ -7,6 +7,7 @@ import GridList from "@material-ui/core/GridList"
 import { Paper } from 'material-ui';
 import { MuiThemeProvider } from 'material-ui/styles';
 import * as userAPI from "../../apis/userAPI";
+import { isLength } from 'validator';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,15 +30,6 @@ const useStyles = makeStyles(theme => ({
 
 const FormPropsTextFields = (props) => {
   const classes = useStyles();
-	// const userdata = {
-  //   userId: "",
-  //   nickName: "",
-  //   email: "",
-  //   gender: 0,
-  //   age: 0,
-  //   phone: "",
-  //   rewardPoint: 0,
-  // }
 
   const [userdata, setUserdata] = useState({
     email: "",
@@ -52,6 +44,23 @@ const FormPropsTextFields = (props) => {
   }
   const confirmPasswordChange = (event) => {
     setPassword({...password, confirmPassword: event.target.value})
+  }
+
+  const passwordValidCheck = (value) => {
+    var pattern1 = /[0-9]/;
+    var pattern2 = /[a-zA-Z]/;
+    var pattern3 = /[~!@\#$%<>^&*]/;
+    if (
+            !isLength(value, {min:8})
+        ||  !pattern1.test(value)
+        ||  !pattern2.test(value)
+        ||  !pattern3.test(value)
+      ) {
+      return false
+    }
+    else {
+      return true
+    }
   }
   
   useEffect(()=>{
@@ -74,7 +83,8 @@ const FormPropsTextFields = (props) => {
   },[]);
   
   const onClickSubmitUserUpdate = (event) => {
-    if (password.changePassword === password.confirmPassword && password.changePassword !== ""){
+
+    if (password.changePassword === password.confirmPassword && password.changePassword !== "" && passwordValidCheck(password.changePassword)){
       var tempdata = userdata
       tempdata.pw = password.changePassword
       
@@ -135,6 +145,7 @@ const FormPropsTextFields = (props) => {
                     onChange={confirmPasswordChange}
                   /><br/>
                 </div><br/>
+                <p>비밀번호는 8글자 이상, 영 대/소문자, 숫자, 특수문자를 포함해야 합니다.</p>
                 <Button className={classes.button} onClick={onClickSubmitUserUpdate}>수정하기</Button>&nbsp;&nbsp;
               </form>
             </Grid>

@@ -80,7 +80,7 @@ const SignUpComponent = props => {
   };
   useEffect(()=>{
     if(localStorage.getItem("nonToken")!=null){
-      alert('로그인 세션이 만료되었습니다. 다시 로그인 해주세요')
+      alert('로그인 토큰이 만료되었습니다. 다시 로그인 해주세요')
       localStorage.removeItem("nonToken");
     }
   },[])

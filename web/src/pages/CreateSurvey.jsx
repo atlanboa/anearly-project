@@ -178,10 +178,10 @@ const CreateSurvey = () => {
 
   const genderCategoryChange = (value) => {
     var tmpGenderNumber=0
-    if (value == "남") {
+    if (value === "남") {
       tmpGenderNumber=1
     }
-    else if (value == "여") {
+    else if (value === "여") {
       tmpGenderNumber=2
     }
     setSendValue({...sendValue, gender: tmpGenderNumber})

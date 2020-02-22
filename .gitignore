@@ -50,6 +50,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-package.json
-package-lock.json

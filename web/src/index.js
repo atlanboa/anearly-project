@@ -6,7 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import axios from 'axios';
 
 axios.interceptors.response.use((response)=>{
-    console.log('interceptors ::: ', response)
+    // console.log('interceptors ::: ', response)
     return response;
 }, (error) =>{
     if(error.response.data.message==="non-token"){

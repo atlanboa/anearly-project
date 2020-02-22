@@ -34,7 +34,7 @@ export default function MaterialTableDemo() {
 		}).then(response =>{
       surveyAPI.selectSurveyAttendHistoryByUserId(userId).then(response => {
         var tempdata = response.data;
-        console.log(tempdata);
+        // console.log(tempdata);
         setmyReward(tempdata);
         tempdata.forEach((a, index) => {
           setRows((rows)=>[...rows,{

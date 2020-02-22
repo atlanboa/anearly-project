@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { makeStyles, Grid} from "@material-ui/core";
 import './prioritySurvey.css';
-import { UncontrolledCarousel } from 'reactstrap';
+import UncontrolledCarousel from "../common/UncontrolledCarousel";
 import  * as surveyAPI from "../../apis/surveyAPI";
 
 const useStyles = makeStyles(theme => ({
