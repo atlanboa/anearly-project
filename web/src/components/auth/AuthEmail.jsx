@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Modal, TextField } from '@material-ui/core/';
 import * as userAPI from "../../apis/userAPI";
@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => ({
 }));
 const AuthEamil = props => {
   const classes = useStyles();
-  const [valid, setValid] = React.useState(true);
   const [message, setMessage] = React.useState('');
   const [send, setSend] = React.useState(false);
 

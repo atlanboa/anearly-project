@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Grid from "@material-ui/core/Grid";
-import VoteResult from  '../../pages/VoteResult';
+import VoteResult from  '../mypage/VoteResult';
 import MaterialTable from 'material-table';
 import { Search, Clear, ChevronLeft, ChevronRight, FirstPage, LastPage, ArrowDownward } from '@material-ui/icons';
 import * as surveyAPI from "../../apis/surveyAPI";
@@ -35,8 +35,6 @@ export default function DenseTable() {
   const [open, setOpen] = React.useState(false);
   const [surveyId, setSurveyId] = React.useState(0);
   const [rows, setRows] = useState([]);
-  const [mySurvey,setMySurvey] = useState([]);
-  const [userdata, setUserdata] = useState();
 
   var columns = [
     { title: 'No', field: 'No'  },
@@ -50,12 +48,10 @@ export default function DenseTable() {
   useEffect(()=>{
     var userId;
     userAPI.getMyInformation().then(response => {
-      setUserdata(response.data)
       userId=response.data.id
 		}).then(response =>{
       surveyAPI.selectAllSurveyByUserId(userId).then(response => {
         var tempdata = response.data;
-        setMySurvey(tempdata);
         tempdata.forEach((a, index) => {
           const reward = a.cur_participant_number*a.point_per_participant
           const startDateList = a.start_date.split("-")

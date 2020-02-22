@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Layout from "../layout/Layout";
 import MyPageIndex from "../components/mypage/MyPageIndex";
 import UserUpdate from "../components/mypage/UserUpdate";
 import MySurvey from '../components/mypage/MySurvey';
 import MyReward from '../components/mypage/MyReward';
-import * as userAPI from "../apis/userAPI";
 const useStyles = makeStyles(theme => ({
   h1: { textAlign: "center", },
 }));

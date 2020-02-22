@@ -5,7 +5,7 @@ import { CommonProvider } from "./context/CommonContext";
 
 import NotFound from "./pages/NotFound";
 import VoteMain from "./pages/VoteMain";
-import VoteResult from "./pages/VoteResult";
+// import VoteResult from "./pages/VoteResult";
 import SignUp from "./pages/SignUp";
 import CreateSurvey from "./pages/CreateSurvey";
 import MyPage from "./pages/MyPage";
@@ -15,7 +15,6 @@ import AdminPage from "./pages/AdminPage";
 import Chatt from "./components/mypage/Chatt"
 
 import "./index.css";
-import { black } from "material-ui/styles/colors";
 
 const theme = createMuiTheme({
   drawerWidth: 320,
@@ -47,7 +46,7 @@ const App = (props) => {
             <Route path="/CreateSurvey" component={CreateSurvey} />
             <Route path="/MyPage" component={MyPage} />
             <Route path="/LogIn" component={LogIn} />
-            <Route path="/VoteResult" component={VoteResult} />
+            {/* <Route path="/VoteResult" component={VoteResult} /> */}
             <Route path="/ProductDetail/:index" component={ProductDetail} />
             <Route path="/Chatt" component={Chatt} />
             <Route path="/AdminPage" component={AdminPage} />

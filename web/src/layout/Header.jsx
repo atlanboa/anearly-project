@@ -21,7 +21,7 @@ import { transparent } from "material-ui/styles/colors";
 import { white } from "material-ui/styles/colors";
 import { Link } from "react-router-dom";
 
-import logo from '../assets/logo_noText.PNG';
+// import logo from '../assets/logo_noText.PNG';
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -40,9 +40,6 @@ const useStyles = makeStyles(theme => ({
   title: {
     cursor: "pointer",
     fontSize: 30,
-  },
-  logoImg: {
-    height: 30,
   },
 }));
 

@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import VoteSelect from './VoteSelect';
 import TextField from '@material-ui/core/TextField';
 import React, { useEffect, useState } from "react";
-import { Button, Paper, Grid, Typography } from "@material-ui/core";
+import { Button, Paper, Typography } from "@material-ui/core";
 import * as surveyAPI from "../../apis/surveyAPI";
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,7 +57,7 @@ const VoteInfo = props => {
           "content": ""
         }
       }))
-      setValid(response.data.map(asdf => { return true}))
+      setValid(response.data.map(() => { return true}))
     }).catch(error => {
       if(error.response.status===500){
         if (error.response.statusText) {
@@ -70,8 +70,8 @@ const VoteInfo = props => {
   const [dataOutput, setDataOutput] = useState([])
   const [valid, setValid] = useState([])
 
-  const [sendValue, setSendValue] = React.useState([]);
-
+  // const [sendValue, setSendValue] = React.useState([]);
+  const sendValue = []
   const setStatus = (index, value) => {
     dataOutput[index]["id"] = value
   };

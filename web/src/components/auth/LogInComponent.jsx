@@ -65,13 +65,13 @@ const SignUpComponent = props => {
         localStorage.removeItem("nonToken");
         actions.setLogged(true);
         window.location.href='/';
-      }else if(response.status===204){
+      }else if(response.status === 204){
         //존재하지 않는 계정정보일 경우
         alert('아이디 혹은 비밀번호가 틀렸습니다.')
       }
     }).catch(error => {
       // console.log(error)
-      if(error.response.status==406){
+      if(error.response.status === 406){
       //   console.log(">>>", error.response.data)
         setOpen(true);
       }
@@ -91,7 +91,7 @@ const SignUpComponent = props => {
           <AuthEmail open={open} setOpen={setOpen} email={email}></AuthEmail>
           <Card className={classes.card} justify="center">
             <div className={classes.logoArea}>
-              <img src={logo} style={{ width: "10%" }} />
+              <img src={logo} style={{ width: "10%" }} alt="..." />
             </div>
             <CardActions>
               <Button size="small" color="primary">
@@ -144,7 +144,6 @@ const SignUpComponent = props => {
                     다른 서비스 계정으로 로그인
                   </Typography>
                 </Grid>
-
                 <Grid item xs={12}>
                   <FacebookIcon fontSize="large" />
                   <CameraAltIcon fontSize="large" />
