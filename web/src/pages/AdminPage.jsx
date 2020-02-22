@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import { ReactReduxContext } from 'react-redux';
 import UserAdmin from "../components/admin/UserAdmin";
 import * as userAPI from "../apis/userAPI";
 import * as surveyAPI from "../apis/surveyAPI";

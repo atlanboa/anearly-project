@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = "http://192.168.100.60:9999"
+const baseUrl = "http://13.124.194.207:8989/"
 const device_number = localStorage.getItem("device_number") ? localStorage.getItem("device_number") : 0
 /**********Survey Controller**********/
 

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import VoteInfo from "./VoteInfo";
 import { makeStyles } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';

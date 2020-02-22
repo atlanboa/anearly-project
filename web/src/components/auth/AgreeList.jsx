@@ -547,7 +547,7 @@ const useStyles = makeStyles(theme => ({
     } else {
       newChecked.splice(currentIndex, 1);
     }
-    if(newChecked.length==0) props.setAgree(true);
+    if(newChecked.length === 0) props.setAgree(true);
     else props.setAgree(false);
     setChecked(newChecked);
   };
@@ -562,7 +562,7 @@ const useStyles = makeStyles(theme => ({
             <ListItemIcon>
               <Checkbox
                 edge="start"
-                checked={checked.indexOf(value) == -1}
+                checked={checked.indexOf(value) === -1}
                 tabIndex={-1}
                 disableRipple
                 inputProps={{ 'aria-labelledby': labelId }}

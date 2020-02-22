@@ -17,8 +17,6 @@ export default function MaterialTableDemo() {
   const classes = useStyles();
 
   const [rows, setRows] = useState([]);
-  const [myReward,setmyReward] = useState([]);
-  const [userdata, setUserdata] = useState();
   
   var columns = [
     { title: 'No', field: 'No' },
@@ -29,13 +27,11 @@ export default function MaterialTableDemo() {
   useEffect(()=>{
     var userId;
     userAPI.getMyInformation().then(response => {
-      setUserdata(response.data)
       userId=response.data.id
 		}).then(response =>{
       surveyAPI.selectSurveyAttendHistoryByUserId(userId).then(response => {
         var tempdata = response.data;
-        console.log(tempdata);
-        setmyReward(tempdata);
+        // console.log(tempdata);
         tempdata.forEach((a, index) => {
           setRows((rows)=>[...rows,{
             "No": index+1,

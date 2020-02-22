@@ -16,14 +16,14 @@ const RadioButtonsGroup = (props) => {
   const classes = useStyles();
 
   const handleChange = event => {
-    props.setGender(event.target.value==="남" ? 1 : 2);
+    props.genderChange(event.target.value==="남" ? 1 : 2);
   };
 
   return (
     <div>
       <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">성별</FormLabel>
-        <RadioGroup row aria-label="gender" name="gender2" onChange={handleChange}>
+        <RadioGroup row aria-label="gender" defaultValue="남" name="gender2" onChange={handleChange}>
           <FormControlLabel
             value="남"
             control={<Radio color="primary" />}

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import { white, transparent } from "material-ui/styles/colors";
+import { transparent } from "material-ui/styles/colors";
 import { Hidden } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { black } from "material-ui/styles/colors";
@@ -22,11 +22,7 @@ const useStyles = makeStyles({
 
 export default function MyTabs() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
   const tabs = [
     { label: "Main", path: "/VoteMain" },
     { label: "CreateSurvey", path: "/CreateSurvey" },
@@ -39,7 +35,7 @@ export default function MyTabs() {
       >
         <Tabs
           className={classes.tabs}
-          value={value}
+          value={0}
           //onChange={handleChange}
           TabIndicatorProps={{ style: { backgroundColor: "transparent" } }}
           variant="scrollable"

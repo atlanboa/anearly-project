@@ -28,7 +28,6 @@ const useStyles = makeStyles({
 
 const MyPageIndex = (props) => {
 	const classes = useStyles();
-
 	const [userdata, setUserdata] = useState({
 		nickName: "",
 		email: "",
@@ -60,38 +59,40 @@ const MyPageIndex = (props) => {
 	};
 
 	var isAdmin;
-	if(userdata.authority=="admin"){
+	if(userdata.authority==="admin"){
 		isAdmin = <AdminPageButton auth={true}/>;
 	}
 	
-	return (
-		<Grid className={classes.root}>
-			<h2 style={{display:"inline"}}>My Info</h2>&nbsp;&nbsp;
-			<IconButton className={classes.editBtn} onClick={onClickFloatUserUpdate}><FaUserEdit/></IconButton>
-			<div className={classes.linkToAdminpage} >{isAdmin}</div>
-			<hr style={{margin:0}}/><br/>
-			<MuiThemeProvider>
-				<Paper className={classes.infoPaper}>
-					<GridList cellHeight="auto">
-						<Grid container>
-							<Grid xs={3} item={true}><FaUserCircle size="70"/></Grid>
-							<Grid xs={8} item={true}>
-								<span className={classes.fontSizeLarge}>{userdata.nickName}</span><br/>
-								<p><MdEmail/>&nbsp;{userdata.email}&nbsp;</p>
-								<p>
+  return (
+    <Grid className={classes.root}>
+      <h2 style={{display:"inline"}}>My Info</h2>&nbsp;&nbsp;
+      <IconButton className={classes.editBtn} onClick={onClickFloatUserUpdate}><FaUserEdit/></IconButton>
+      <div className={classes.linkToAdminpage} >{isAdmin}</div>
+      <hr style={{margin:0}}/><br/>
+      <MuiThemeProvider>
+        <Paper className={classes.infoPaper}>
+          <GridList cellHeight="auto">
+            <Grid container>
+              <Grid xs={3} item={true}>
+                <FaUserCircle size="70"/>
+              </Grid>
+              <Grid xs={8} item={true}>
+                <span className={classes.fontSizeLarge}>{userdata.nickName}</span><br/>
+                <p><MdEmail/>&nbsp;{userdata.email}&nbsp;</p>
+                <p>
                   ({userdata.gender===1?"남":"여"},&nbsp;{userdata.age})&nbsp;
                   &nbsp;<MdPhone/>&nbsp;{userdata.phone}
                 </p>
-							</Grid>
-						</Grid>
-						<Grid> 	
-							<FaCoins size="60"/>
-							<span className={classes.fontSizeLarge}>&nbsp;&nbsp;{userdata.rewardPoint}&nbsp;원</span>
-						</Grid>
-					</GridList>
-				</Paper>
-			</MuiThemeProvider>
-		</Grid>
+              </Grid>
+            </Grid>
+            <Grid> 	
+              <FaCoins size="60"/>
+              <span className={classes.fontSizeLarge}>&nbsp;&nbsp;{userdata.rewardPoint}&nbsp;원</span>
+            </Grid>
+          </GridList>
+        </Paper>
+      </MuiThemeProvider>
+    </Grid>
   )
 }
 

@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 import "./style.scss";
-import DraggableUploader from "./DraggableUploader";
 
 const useStyles = makeStyles(theme => ({
   wholebox: {

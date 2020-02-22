@@ -3,7 +3,8 @@ import { makeStyles, Box, Button } from "@material-ui/core";
 import { transparent } from "material-ui/styles/colors";
 import { CommonConsumer } from "../../context/CommonContext";
 import { black } from "material-ui/styles/colors";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 const useStyles = makeStyles(theme => ({
   link: {
     backgroundColor: transparent,
@@ -26,10 +27,10 @@ const HeaderRight = props => {
           state.isLogged ? 
             (
               <Box textAlign="right">
-              <Link to={"/MyPage"}>
-                  <Button className={classes.link}>MyPage</Button>
-                </Link>
-              <Button onClick={() => logout(actions)} className={classes.link}>
+                <Link to={"/MyPage"}>
+                    <Button className={classes.link}>MyPage</Button>
+                  </Link>
+                <Button onClick={() => logout(actions)} className={classes.link}>
                   LogOut
                 </Button>
               </Box>

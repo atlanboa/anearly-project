@@ -75,9 +75,6 @@ export default class DraggableUploader extends React.Component {
       }, 3000);
     });
   }
-  asdf(event) {
-    console.log(event)
-  }
 
   render() {
     const {loadedFiles} = this.state;
@@ -101,7 +98,6 @@ export default class DraggableUploader extends React.Component {
               e.stopPropagation();
             }}
             onDrop={this.onFileLoad.bind(this)}
-            onChange={this.asdf}
           />
           <div className="files-preview-container ip-scrollbar">
             {loadedFiles.map((file, idx) => {

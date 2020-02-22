@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Button, Modal } from '@material-ui/core';
-import { UncontrolledCarousel } from 'reactstrap';
+import UncontrolledCarousel from "../common/UncontrolledCarousel";
 import VoteDetail from '../votedetail/VoteDetail';
 
 
