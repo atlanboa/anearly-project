@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anearly.rest.db.mapper.SurveyMapper">
+	<select id="selectSurvey" parameterType="int"
+		resultType="com.anearly.rest.db.dto.SurveyDto">
+		SELECT id, user_id, title, hit, start_date,
+		end_date,
+		budget, category, content,
+		product_name, product_price,
+		product_release_date,
+		product_image,
+		max_participant_number,
+		cur_participant_number,
+		point_per_participant,
+		approval, open_status,
+		target_age, target_gender
+		FROM survey
+		WHERE id = #{value}
+	</select>
+
+	<select id="selectAllSurvey"
+		resultType="com.anearly.rest.db.dto.SurveyDto">
+		SELECT id, user_id, title, hit, DATE_FORMAT(start_date,
+		'%Y-%m-%d') as start_date,
+		end_date,
+		budget, category,
+		product_name,
+		product_price,
+		product_release_date,
+		product_image,
+		max_participant_number,
+		cur_participant_number,
+		point_per_participant,
+		target_age, target_gender,
+		approval, open_status
+		FROM survey
+	</select>
+
+	<select id="selectAllSurveyByUserId" parameterType="int"
+		resultType="com.anearly.rest.db.dto.SurveyDto">
+		SELECT id, user_id, title, hit, start_date,
+		end_date,
+		budget, category,
+		product_name, product_price,
+		product_release_date,
+		product_image,
+		max_participant_number,
+		cur_participant_number,
+		point_per_participant,
+		approval, open_status,
+		target_age, target_gender
+		FROM survey
+		WHERE user_id = #{value}
+	</select>
+
+	<select id="selectAllSurveyByApproval" parameterType="int"
+		resultType="com.anearly.rest.db.dto.SurveyDto">
+		SELECT id, user_id, title, hit, start_date,
+		end_date,
+		budget, category,
+		product_name, product_price,
+		product_release_date,
+		product_image,
+		max_participant_number,
+		cur_participant_number,
+		point_per_participant,
+		approval,
+		open_status,
+		target_age, target_gender
+		FROM survey
+		WHERE approval =
+		#{value}
+	</select>
+	
+	<select id="selectAllDeadlineNearSurvey" parameterType="int" resultType="com.anearly.rest.db.dto.SurveyDto">
+		SELECT 
+		id, user_id, title, hit, start_date, end_date, budget, category, product_name, product_price, product_release_date, 
+		product_image, max_participant_number, cur_participant_number, point_per_participant, approval, open_status, target_age, target_gender
+		FROM survey
+		WHERE approval = #{approved} and open_status = #{open}
+		ORDER BY end_date limit 8
+	</select>
+	
+	<select id="selectAllSurveyByTarget" parameterType="int" resultType="com.anearly.rest.db.dto.SurveyDto">
+		SELECT 
+		id, user_id, title, hit, start_date, end_date, budget, category, product_name, product_price, product_release_date, 
+		product_image, max_participant_number, cur_participant_number, point_per_participant, approval, open_status, target_gender, target_age
+		FROM survey 
+		WHERE target_gender = (SELECT gender FROM person WHERE device = #{value}) OR target_gender = 0 AND approval = 1 AND open_status = 1
+		ORDER BY ABS(target_age - (SELECT age FROM person WHERE device = #{value})) 
+		LIMIT 8
+	</select>
+
+	<insert id="insertSurvey"
+		parameterType="com.anearly.rest.db.dto.SurveyDto"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT into survey (
+		user_id,
+		title,
+		content,
+		start_date,
+		end_date,
+		budget,
+		category,
+		product_name,
+		product_price,
+		product_release_date,
+		product_image,
+		max_participant_number,
+		point_per_participant,
+		target_age,
+		target_gender)
+		VALUES (
+		#{user_id},
+		#{title},
+		#{content},
+		#{start_date},
+		#{end_date},
+		#{budget},
+		#{category},
+		#{product_name},
+		#{product_price},
+		#{product_release_date},
+		#{product_image},
+		#{max_participant_number},
+		#{point_per_participant},
+		#{target_age},
+		#{target_gender})
+	</insert>
+
+	<update id="updateSurvey"
+		parameterType="com.anearly.rest.db.dto.SurveyDto">
+		UPDATE survey SET
+		title = #{title}, hit = #{hit},
+		start_date = #{start_date}, end_date =
+		#{end_date},
+		budget = #{budget},
+		category = #{category}, product_name = #{product_name},
+		product_price =
+		#{product_price}, product_release_date =
+		#{product_release_date},
+		product_image = #{product_image}, max_participant_number =
+		#{max_participant_number}, cur_participant_number =
+		#{cur_participant_number}, point_per_participant =
+		#{point_per_participant}, target_age = #{target_age}, target_gender=#{target_gender}
+		WHERE
+		id = #{id}
+	</update>
+
+	<update id="updateSurveyParticipant" parameterType="int">
+		UPDATE survey
+		SET
+		cur_participant_number = cur_participant_number + 1
+		WHERE
+		id =
+		#{value}
+	</update>
+
+	<update id="updateSurveyApproval" parameterType="int">
+		UPDATE survey
+		SET
+		approval = #{approval}
+		WHERE
+		id = #{survey_id}
+	</update>
+
+	<update id="updateSurveyOpenStatus" parameterType="int">
+		UPDATE survey
+		SET
+		open_status = #{status}
+		WHERE
+		id = #{survey_id}
+	</update>
+
+	<update id="updateSurveyOpenStatusByEndDate" parameterType="int">
+		UPDATE survey
+		SET
+		open_status = #{close}
+		<![CDATA[WHERE end_date < CURRENT_DATE AND open_status = #{open}]]>
+	</update>
+
+	<delete id="deleteSurvey" parameterType="int">
+		DELETE FROM survey
+		WHERE
+		id = #{value}
+	</delete>
+</mapper>

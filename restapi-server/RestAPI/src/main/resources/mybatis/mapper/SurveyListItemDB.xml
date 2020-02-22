@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.anearly.rest.db.mapper.SurveyListItemMapper">
+	<select id="selectSurveyListItem" parameterType="int"
+		resultType="com.anearly.rest.db.dto.SurveyListItemDto">
+		SELECT id, survey_list_id, content,
+		display_order
+		FROM
+		survey_list_item
+		WHERE id = #{value}
+	</select>
+
+	<select id="selectAllSurveyListItemBySurveyListId"
+		parameterType="int"
+		resultType="com.anearly.rest.db.dto.SurveyListItemDto">
+		SELECT id, survey_list_id, content,
+		display_order
+		FROM
+		survey_list_item
+		WHERE survey_list_id = #{value}
+		ORDER BY display_order
+	</select>
+
+	<select id="selectAllSurveyListItem"
+		resultType="com.anearly.rest.db.dto.SurveyListItemDto">
+		SELECT id, survey_list_id, content,
+		display_order
+		FROM
+		survey_list_item
+	</select>
+
+	<select id="getAnalysisByListId"
+		parameterType="int"
+		resultType="com.anearly.rest.db.dto.SurveyAnalysisListDto">
+		SELECT a.content, count(*) AS count 
+		FROM survey_list_item a join survey_list_item_result b 
+		ON a.id = b.survey_list_item_id
+		WHERE a.survey_list_id = #{value}
+		GROUP BY a.id;
+	</select>
+
+	<insert id="insertSurveyListItem"
+		parameterType="com.anearly.rest.db.dto.SurveyListItemDto"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT into survey_list_item
+		(survey_list_id, content, display_order)
+		VALUES (#{survey_list_id},
+		#{content}, #{display_order})
+	</insert>
+
+	<update id="updateSurveyListItem"
+		parameterType="com.anearly.rest.db.dto.SurveyListItemDto">
+		UPDATE survey_list_item SET
+		survey_list_id =
+		#{survey_list_id}, content = #{content}, display_order =
+		#{display_order}
+		WHERE
+		id = #{id}
+	</update>
+
+	<delete id="deleteSurveyListItem" parameterType="int">
+		DELETE FROM
+		survey_list_item
+		WHERE id = #{value}
+	</delete>
+</mapper>

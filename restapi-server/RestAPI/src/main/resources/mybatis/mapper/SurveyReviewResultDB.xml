@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.anearly.rest.db.mapper.SurveyReviewResultMapper">
+	<select id="selectSurveyReviewResult" parameterType="int"
+		resultType="com.anearly.rest.db.dto.SurveyReviewResultDto">
+		SELECT id, survey_review_id, user_id,
+		content
+		FROM
+		survey_review_result
+		WHERE id =
+		#{value}
+	</select>
+
+	<select id="selectAllSurveyReviewResult"
+		resultType="com.anearly.rest.db.dto.SurveyReviewResultDto">
+		SELECT id, survey_review_id, user_id,
+		content
+		FROM
+		survey_review_result
+	</select>
+
+	<select id="selectAllSurveyReviewResultBySurveyReviewId"
+		parameterType="int"
+		resultType="com.anearly.rest.db.dto.SurveyReviewResultDto">
+		SELECT id, survey_review_id, user_id,
+		content
+		FROM
+		survey_review_result
+		WHERE survey_review_id = #{value}
+	</select>
+
+	<select id="selectAllSurveyReviewResultBySurveyReviewId2"
+		parameterType="int"
+		resultType="com.anearly.rest.db.dto.SurveyReviewResultDto">
+		SELECT 
+		content
+		FROM
+		survey_review_result
+		WHERE survey_review_id = #{value}
+	</select>
+
+	<insert id="insertSurveyReviewResult"
+		parameterType="com.anearly.rest.db.dto.SurveyReviewResultDto"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT into survey_review_result
+		(survey_review_id,
+		user_id, content)
+		VALUES (#{survey_review_id},
+		#{user_id}, #{content})
+	</insert>
+
+	<update id="updateSurveyReviewResult"
+		parameterType="com.anearly.rest.db.dto.SurveyReviewResultDto">
+		UPDATE survey_review_result SET
+		survey_review_id =
+		#{survey_review_id}, content = #{content}, user_id = #{user_id}
+		WHERE
+		id = #{id}
+	</update>
+
+	<delete id="deleteSurveyReviewResult" parameterType="int">
+		DELETE FROM
+		survey_review_result
+		WHERE
+		id = #{value}
+	</delete>
+</mapper>

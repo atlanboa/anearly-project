@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.anearly.rest.db.mapper.SurveyListItemResultMapper">
+	<select id="selectSurveyListItemResult" parameterType="int"
+		resultType="com.anearly.rest.db.dto.SurveyListItemResultDto">
+		SELECT id, survey_list_item_id,
+		user_id
+		FROM
+		survey_list_item_result
+		WHERE id = #{value}
+	</select>
+
+	<select id="selectAllSurveyListItemResultBySurveyListItemId"
+		parameterType="int"
+		resultType="com.anearly.rest.db.dto.SurveyListItemResultDto">
+		SELECT id, survey_list_item_id,
+		user_id
+		FROM
+		survey_list_item_result
+		WHERE survey_list_item_id = #{value}
+	</select>
+
+	<select id="selectAllSurveyListItemResult"
+		resultType="com.anearly.rest.db.dto.SurveyListItemResultDto">
+		SELECT id, survey_list_item_id,
+		user_id
+		FROM
+		survey_list_item_result
+	</select>
+
+	<insert id="insertSurveyListItemResult"
+		parameterType="com.anearly.rest.db.dto.SurveyListItemResultDto"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT into
+		survey_list_item_result (survey_list_item_id, user_id)
+		VALUES
+		(#{survey_list_item_id}, #{user_id})
+	</insert>
+
+	<update id="updateSurveyListItemResult"
+		parameterType="com.anearly.rest.db.dto.SurveyListItemResultDto">
+		UPDATE survey_list_item_result SET
+		survey_list_item_id =
+		#{survey_list_item_id}, user_id = #{user_id}
+		WHERE
+		id = #{id}
+	</update>
+
+	<delete id="deleteSurveyListItemResult" parameterType="int">
+		DELETE
+		FROM survey_list_item_result
+		WHERE id = #{value}
+	</delete>
+</mapper>

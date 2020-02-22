@@ -1,0 +1,15 @@
+회원가입 SignUp
+로그인 Login
+마이페이지 MyPage
+회원정보수정 페이지 이동 MyPageUpdateForm
+회원정보수정 MyPageUpdateForm-Update
+회원탈퇴 Withdrawal
+아이디 찾기 FindId
+비밀번호 찾기 FindPw
+설문리스트보기 SurveyList
+설문 상세 보기 SurveyDetail
+설문 만들기 SurveyCreate
+설문 수정하기 SurveyUpdate
+설문 삭제하기 SurveyDelete
+설문 결과보기 SurveyResult
+마이 리워드 MyReward

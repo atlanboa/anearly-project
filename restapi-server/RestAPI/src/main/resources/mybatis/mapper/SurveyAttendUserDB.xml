@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.anearly.rest.db.mapper.SurveyAttendUserMapper">
+
+	<select id="selectSurveyAttendUser" parameterType="int"
+		resultType="com.anearly.rest.db.dto.SurveyAttendUserDto">
+		SELECT id, survey_id, user_id
+		FROM
+		survey_attend_user
+		WHERE id
+		= #{value}
+	</select>
+	
+	<select id="selectSurveyAttendHistoryByUserId" parameterType="int" resultType="com.anearly.rest.db.dto.SurveyAttendHistoryDto">
+		SELECT title, point_per_participant
+		FROM survey
+		WHERE id
+		IN 
+		(
+		SELECT survey_id 
+		FROM survey_attend_user
+		WHERE user_id = #{value}
+		)
+	</select>
+
+	<select id="selectAllSurveyAttendUserBySurveyId"
+		parameterType="int"
+		resultType="com.anearly.rest.db.dto.SurveyAttendUserDto">
+		SELECT id, survey_id, user_id
+		FROM
+		survey_attend_user WHERE
+		survey_id = #{value}
+	</select>
+
+	<select id="selectAllSurveyAttendUser"
+		resultType="com.anearly.rest.db.dto.SurveyAttendUserDto">
+		SELECT id, survey_id, user_id
+		FROM
+		survey_attend_user
+	</select>
+
+	<select id="selectSurveyAttendUser2" parameterType="int"
+		resultType="com.anearly.rest.db.dto.SurveyAttendUserDto">
+		SELECT id, survey_id, user_id
+		FROM
+		survey_attend_user
+		WHERE survey_id = #{survey_id} AND user_id = #{user_id}
+	</select>
+
+	<insert id="insertSurveyAttendUser"
+		parameterType="com.anearly.rest.db.dto.SurveyAttendUserDto"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT into survey_attend_user
+		(survey_id, user_id)
+		VALUES (#{survey_id}, #{user_id})
+	</insert>
+
+	<update id="updateSurveyAttendUser"
+		parameterType="com.anearly.rest.db.dto.SurveyAttendUserDto">
+		UPDATE survey_attend_user SET
+		survey_id = #{survey_id},
+		user_id = #{user_id}
+		WHERE
+		id =
+		#{id}
+	</update>
+
+	<delete id="deleteSurveyAttendUser" parameterType="int">
+		DELETE FROM
+		survey_attend_user
+		WHERE id = #{value}
+	</delete>
+</mapper>

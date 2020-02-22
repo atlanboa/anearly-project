@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anearly.rest.db.mapper.PersonMapper">
+	<select id="selectPersonData" parameterType="int"	resultType="com.anearly.rest.db.dto.PersonDto">
+		SELECT
+		device, gender, age
+		FROM person
+		WHERE device = #{value}
+	</select>
+	
+	<insert id="insertPersonData" parameterType="com.anearly.rest.db.dto.PersonDto">
+		INSERT INTO person (device, gender, age)
+		VALUES (#{device}, #{gender}, #{age})
+	</insert>
+
+	<update id="updatePersonData" parameterType="com.anearly.rest.db.dto.PersonDto">
+		UPDATE person SET gender = #{gender}, age = #{age} WHERE device = #{device}
+	</update>
+	
+	<delete id="deletePersonData" parameterType="int">
+		DELETE FROM person WHERE device = #{value}
+	</delete>
+	
+</mapper>

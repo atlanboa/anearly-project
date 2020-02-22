@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anearly.rest.db.mapper.UserMapper">
+	<select id="selectUser"
+		parameterType="com.anearly.rest.db.dto.UserDto"
+		resultType="com.anearly.rest.db.dto.UserDto">
+		SELECT id, nickname, email, email_verification, gender,
+		age, phone, reward_point, authority
+		FROM user where email = #{email} and pw = #{pw}
+	</select>
+
+	<select id="selectAllUser"
+		resultType="com.anearly.rest.db.dto.UserDto">
+		SELECT id, nickname, email, email_verification, gender,
+		age, phone,
+		reward_point
+		FROM user
+	</select>
+
+	<insert id="insertUser"
+		parameterType="com.anearly.rest.db.dto.UserDto"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT into user (nickname, email,
+		pw, gender, age, phone)
+		VALUES (#{nickname}, #{email}, #{pw},
+		#{gender}, #{age}, #{phone})
+	</insert>
+
+	<update id="updateUser"
+		parameterType="com.anearly.rest.db.dto.UserDto">
+		UPDATE user SET
+		pw = #{pw}, gender = #{gender},
+		age = #{age}, phone = #{phone}
+		WHERE
+		id = #{id}
+	</update>
+
+	<update id="updateUserPoint" parameterType="int">
+		UPDATE user SET
+		reward_point = reward_point + (select point_per_participant from
+		survey where id = #{survey_id})
+		WHERE
+		id = #{user_id}
+	</update>
+
+	<update id="updateUserPoint2" parameterType="int">
+		UPDATE user SET
+		reward_point = reward_point - #{budget}
+		WHERE
+		id = #{user_id}
+	</update>
+
+	<delete id="deleteUser" parameterType="int">
+		DELETE FROM user
+		WHERE id =
+		#{value}
+	</delete>
+
+	<select id="selectUserById" parameterType="int"
+		resultType="com.anearly.rest.db.dto.UserDto">
+		SELECT id, nickname, email, email_verification, gender,
+		age, phone, reward_point, authority
+		FROM user
+		WHERE id = #{id}
+	</select>
+
+	<update id="updateVerification" parameterType="String">
+		UPDATE user SET
+		email_verification = #{code}
+		where email = #{email}
+	</update>
+
+	<update id="updateNewPassword" parameterType="String">
+		UPDATE user SET
+		pw =
+		#{password}
+		where email = #{email}
+	</update>
+
+	<select id="selectUserByEmail" parameterType="String"
+		resultType="com.anearly.rest.db.dto.UserDto">
+		SELECT id, pw, nickname, email, email_verification, gender,
+		age, phone, reward_point, authority
+		FROM user where email = #{value}
+	</select>
+
+	<select id="selectUserByNickname" parameterType="String"
+		resultType="com.anearly.rest.db.dto.UserDto">
+		SELECT id, nickname, email, email_verification, gender,
+		age, phone, reward_point
+		FROM user where nickname = #{value}
+	</select>
+
+	<select id="selectUserByPhone" parameterType="String"
+		resultType="com.anearly.rest.db.dto.UserDto">
+		SELECT id, nickname, email, age, phone, reward_point
+		FROM
+		user where phone = #{value}
+	</select>
+
+</mapper>
