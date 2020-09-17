@@ -699,13 +699,3 @@ rasp_socket.close()
 
 
 
-
-## **Contributing**
-
-## **Credits**
-
-## **License**
-
-Samsung Software Academy For Youth 2th, Team An-Early
-
-![./asset/team.jpg](./asset/team.jpg)
